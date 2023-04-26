@@ -110,14 +110,21 @@ Course course = new Course()
 
 
 
-//InsertIntoDatabase i1 = new InsertIntoDatabase();
-//i1.InsertObjectIntoDb(course, null, null);
-string _connection = @"server=DESKTOP-8VMMQPN\SQLEXPRESS;Database=assignment_4;Trusted_Connection=True;Encrypt=False";
+InsertIntoDatabase i1 = new InsertIntoDatabase();
+i1.InsertObjectIntoDb(course, null, null);
 
 
-DatabaseConnector d1 = new DatabaseConnector(_connection);
-DataExtractor s1 = new DataExtractor(d1);
-List<Dictionary<string,object>> result =s1.ExtractAllData(course, null);
-DataPrinter dp1 = new DataPrinter();
 
-dp1.PrintData(result);
+//string _connection = "Server=DESKTOP-8VMMQPN\\SQLEXPRESS;Database=assignment_4;Trusted_Connection=True;Encrypt=False";
+
+
+//DatabaseConnector d1 = new DatabaseConnector(_connection);
+
+//DataExtractor s1 = new DataExtractor(d1);
+
+//List<Dictionary<string,object>> result =s1.ExtractAllData(course, null);
+
+
+//DataPrinter dp1 = new DataPrinter();
+
+//dp1.PrintData(result);

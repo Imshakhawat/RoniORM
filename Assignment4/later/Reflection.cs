@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment4
+namespace Assignment4.later
 {
     public static class Reflection
     {
@@ -20,12 +20,12 @@ namespace Assignment4
             {
                 var value = property.GetValue(obj);
                 if (value is null) continue;
-                else if(value is string || value.GetType().IsValueType)
+                else if (value is string || value.GetType().IsValueType)
                 {
                     Console.WriteLine("Column:" + property.Name);
-                    Console.WriteLine("Value: "+ value);
+                    Console.WriteLine("Value: " + value);
                 }
-                else if(value is IList list)
+                else if (value is IList list)
                 {
                     foreach (var item in list)
                         Convert(item);
