@@ -84,7 +84,7 @@ Course course = new Course()
                 {
                     id = 4,
                     DurationInHour = 2,
-                    LearningObjective = "Implement basic data structures and algorithms."
+                    LearningObjective = "Implement  data structures and algorithms."
                 }
             }
         }
@@ -113,6 +113,8 @@ Course course = new Course()
 InsertIntoDatabase i1 = new InsertIntoDatabase();
 i1.InsertObjectIntoDb(course, null, null);
 
+//DatabaseManager dm = new DatabaseManager();
+//dm.DeleteObject(course, null, null);
 
 
 //string _connection = "Server=DESKTOP-8VMMQPN\\SQLEXPRESS;Database=assignment_4;Trusted_Connection=True;Encrypt=False";
@@ -128,3 +130,11 @@ i1.InsertObjectIntoDb(course, null, null);
 //DataPrinter dp1 = new DataPrinter();
 
 //dp1.PrintData(result);
+
+
+
+course x = context.find(x => x.Id == 1);
+
+x.fees = 5000;
+
+context.update(x);

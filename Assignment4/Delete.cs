@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Assignment4
 {
@@ -10,7 +11,7 @@ namespace Assignment4
     {
         private readonly SqlConnection _connection = new SqlConnection(@"Server=DESKTOP-8VMMQPN\SQLEXPRESS;Database=assignment_4;Trusted_Connection=True;Encrypt=False");
 
-        public void InsertObjectIntoDb(object obj, string foreign_key, string refId)
+        public void DeleteObject(object obj, string foreign_key, string refId)
         {
             Dictionary<string, object> dict = new Dictionary<string, object>();
 
@@ -53,26 +54,27 @@ namespace Assignment4
                 {
                     foreach (var item in list)
                     {
-                        DeleteObjectFromDb(item.GetType(), GetPropertyValue(item, "id"));
-                        InsertObjectIntoDb(item, FkColumn, fkId);
+                        //  DeleteObjectFromDb(item.GetType(), GetPropertyValue(item, "id"));
+                        DeleteObject(item, FkColumn, fkId);
                     }
                 }
                 else
                 {
-                    DeleteObjectFromDb(value.GetType(), GetPropertyValue(value, "id"));
-                    InsertObjectIntoDb(value, FkColumn, fkId);
+                    //   DeleteObjectFromDb(value.GetType(), GetPropertyValue(value, "id"));
+                    DeleteObject(value, FkColumn, fkId);
                 }
             }
 
-            GenerateInsertSql(tableName, dict);
+
+
+            DeleteObjectFromDb(tableName, (int)id);
         }
 
-        public void DeleteObjectFromDb(Type type, string id)
+        public void DeleteObjectFromDb(string tableName, int id)
         {
             if (id == null) return;
-            string tableName = type.Name;
-            string idColumn = "id";
-            string deleteQuery = $"DELETE FROM {tableName} WHERE {idColumn}=@id";
+
+            string deleteQuery = $"DELETE FROM {tableName} WHERE {id}=@id";
 
             using (SqlCommand cmd = new SqlCommand(deleteQuery, _connection))
             {
