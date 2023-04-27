@@ -83,7 +83,7 @@ namespace Assignment4
 
             var query = new StringBuilder();
 
-            query.Append($"INSERT INTO {tableName} ({columns}) VALUES ({parameters})");
+           query.Append($"INSERT INTO {tableName} ({columns}) VALUES ({parameters})");
 
             Console.WriteLine(query);
 
