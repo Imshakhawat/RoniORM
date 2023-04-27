@@ -6,10 +6,13 @@ using System.Text;
 
 namespace Assignment4
 {
-    public class DatabaseManager
+    public class InsertIntoDatabase
     {
         private readonly SqlConnection _connection = new SqlConnection(@"Server=DESKTOP-8VMMQPN\SQLEXPRESS;Database=assignment_4;Trusted_Connection=True;Encrypt=False");
-
+        //public InsertIntoDatabase(SqlConnection connection)
+        //{
+        //    _connection = connection;  "Server=DESKTOP-8VMMQPN\\SQLEXPRESS;Database=bookzone;Trusted_Connection=True;Encrypt=False";
+        //}
         public void InsertObjectIntoDb(object obj, string foreign_key, string refId)
         {
             Dictionary<string, object> dict = new Dictionary<string, object>();
@@ -27,7 +30,7 @@ namespace Assignment4
 
             PropertyInfo[] properties = type.GetProperties();
 
-            var id = properties.FirstOrDefault(x => x.Name.ToLower() == "id")?.GetValue(obj);
+            var id = properties.FirstOrDefault(x => x.Name.ToLower() == "id").GetValue(obj);
 
             if (id == null)
             {
@@ -53,48 +56,20 @@ namespace Assignment4
                 {
                     foreach (var item in list)
                     {
-                        DeleteObjectFromDb(item.GetType(), GetPropertyValue(item, "id"));
                         InsertObjectIntoDb(item, FkColumn, fkId);
                     }
                 }
                 else
                 {
-                    DeleteObjectFromDb(value.GetType(), GetPropertyValue(value, "id"));
                     InsertObjectIntoDb(value, FkColumn, fkId);
                 }
             }
-
+            //Console.WriteLine("Current State of DICT:");
+            //foreach(var item in dict)
+            //{
+            //    Console.WriteLine(item.Key +" "+ item.Value);
+            //}
             GenerateInsertSql(tableName, dict);
-        }
-
-        public void DeleteObjectFromDb(Type type, string id)
-        {
-            if (id == null) return;
-            string tableName = type.Name;
-            string idColumn = "id";
-            string deleteQuery = $"DELETE FROM {tableName} WHERE {idColumn}=@id";
-
-            using (SqlCommand cmd = new SqlCommand(deleteQuery, _connection))
-            {
-                cmd.Parameters.AddWithValue("@id", id);
-
-                try
-                {
-                    _connection.Open();
-                    cmd.ExecuteNonQuery();
-                }
-                catch (SqlException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                finally
-                {
-                    if (_connection.State != ConnectionState.Closed)
-                    {
-                        _connection.Close();
-                    }
-                }
-            }
         }
 
         public void GenerateInsertSql(string tableName, Dictionary<string, object> columnValues)
@@ -102,6 +77,9 @@ namespace Assignment4
             var columns = string.Join(", ", columnValues.Keys);
 
             var parameters = string.Join(", ", columnValues.Select(x => "@" + x.Key));
+
+            //SqlConnection connection = new SqlConnection();
+            //connection.ConnectionString = "Server=DESKTOP-86V0L02;Database=assignment_4;Trusted_Connection=True;";
 
             var query = new StringBuilder();
 
@@ -132,19 +110,9 @@ namespace Assignment4
                     }
                 }
 
-
-
             }
 
-
-        }
-
-
-        private object GetPropertyValue(object obj, string propertyName)
-        {
-            return obj.GetType().GetProperty(propertyName)?.GetValue(obj, null);
         }
 
     }
-
 }
