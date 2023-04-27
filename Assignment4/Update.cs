@@ -12,15 +12,10 @@ namespace Assignment4
 {
     public class Update
     {
-        public class InsertIntoDatabase
-        {
+
             private readonly SqlConnection _connection = new SqlConnection(@"Server=DESKTOP-8VMMQPN\SQLEXPRESS;Database=assignment_4;Trusted_Connection=True;Encrypt=False");
 
-            public void InsertObjectIntoDb(object obj, string foreign_key, string refId)
-            {
-                // Same as before
-                // ...
-            }
+
 
             public void UpdateObjectInDb(object obj, string foreign_key, string refId)
             {
@@ -59,6 +54,7 @@ namespace Assignment4
                     if (value == null) continue;
                     if (value is string || value.GetType().IsValueType)
                     {
+                    if (property.Name == "id") continue;
                         dict.Add(property.Name, value);
                     }
                     else if (value is IList list)
@@ -83,11 +79,6 @@ namespace Assignment4
                 GenerateUpdateSql(tableName, dict, fkId);
             }
 
-            public void GenerateInsertSql(string tableName, Dictionary<string, object> columnValues)
-            {
-                // Same as before
-                // ...
-            }
 
             public void GenerateUpdateSql(string tableName, Dictionary<string, object> columnValues, string? id)
             {
@@ -127,4 +118,4 @@ namespace Assignment4
             }
         }
     }
-}
+
