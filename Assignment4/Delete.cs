@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Assignment4
 {
-    public class DatabaseManager
+    public class DeleteFromDb
     {
         private readonly SqlConnection _connection = new SqlConnection(@"Server=DESKTOP-8VMMQPN\SQLEXPRESS;Database=assignment_4;Trusted_Connection=True;Encrypt=False");
 
