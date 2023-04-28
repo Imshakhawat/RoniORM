@@ -1,4 +1,5 @@
 ﻿using Assignment4;
+using System;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -117,21 +118,21 @@ Course course = new Course()
 //dm.DeleteObject(course, null, null);
 
 
-Update x = new Update();
+//Update x = new Update();
 
-course.Fees = 10000;
-
-
-
-x.UpdateObjectInDb(course, null, null);
+//course.Fees = 10000;
 
 
 
+//x.UpdateObjectInDb(course, null, null);
 
 
-course.instructor.Name = "Dajjal Jalal";
 
-x.UpdateObjectInDb(course, null, null);
+
+
+//course.instructor.Name = "Dajjal Jalal";
+
+//x.UpdateObjectInDb(course, null, null);
 //string _connection = "Server=DESKTOP-8VMMQPN\\SQLEXPRESS;Database=assignment_4;Trusted_Connection=True;Encrypt=False";
 
 
@@ -146,4 +147,14 @@ x.UpdateObjectInDb(course, null, null);
 
 //dp1.PrintData(result);
 
+Guid input = new Guid();
+Guid guid;
 
+if (Guid.TryParse(input.ToString(), out guid))
+{
+    Console.WriteLine("Input is a valid GUID: " + guid);
+}
+else
+{
+    Console.WriteLine("Input is not a valid GUID");
+}
