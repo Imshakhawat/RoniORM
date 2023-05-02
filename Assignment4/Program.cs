@@ -114,8 +114,7 @@ Course course = new Course()
 //InsertIntoDatabase i1 = new InsertIntoDatabase();
 //i1.InsertObjectIntoDb(course, null, null);
 
-//DatabaseManager dm = new DatabaseManager();
-//dm.DeleteObject(course, null, null);
+
 
 
 //Update x = new Update();
@@ -125,6 +124,18 @@ Course course = new Course()
 
 
 //x.UpdateObjectInDb(course, null, null);
+
+
+DatabaseManager dm = new DatabaseManager();
+dm.DeleteObject(course, null, null);
+
+
+
+
+
+
+
+
 
 
 
@@ -147,14 +158,14 @@ Course course = new Course()
 
 //dp1.PrintData(result);
 
-Guid input = new Guid();
-Guid guid;
+//Guid input = new Guid();
+//Guid guid;
 
-if (Guid.TryParse(input.ToString(), out guid))
-{
-    Console.WriteLine("Input is a valid GUID: " + guid);
-}
-else
-{
-    Console.WriteLine("Input is not a valid GUID");
-}
+//if (Guid.TryParse(input.ToString(), out guid))
+//{
+//    Console.WriteLine("Input is a valid GUID: " + guid);
+//}
+//else
+//{
+//    Console.WriteLine("Input is not a valid GUID");
+//}

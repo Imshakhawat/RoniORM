@@ -1,0 +1,145 @@
+CREATE TABLE [dbo].[topic](
+	[id] [nvarchar](50) NULL,
+	[title] [nvarchar](50) NULL,
+	[description] [nvarchar](50) NULL,
+	[courseid] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[session](
+	[id] [nvarchar](max) NULL,
+	[durationinhour] [nvarchar](max) NULL,
+	[learningobjective] [nvarchar](max) NULL,
+	[topicid] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+
+CREATE TABLE [dbo].[phone](
+	[id] [nvarchar](50) NULL,
+	[number] [nvarchar](50) NULL,
+	[extension] [nvarchar](50) NULL,
+	[countrycode] [nvarchar](50) NULL,
+	[instructorid] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+
+CREATE TABLE [dbo].[instructor](
+	[id] [nvarchar](50) NULL,
+	[name] [nvarchar](50) NULL,
+	[email] [nvarchar](50) NULL,
+	[courseid] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[course](
+	[id] [nvarchar](50) NOT NULL,
+	[title] [nvarchar](50) NULL,
+	[fees] [float] NULL,
+ CONSTRAINT [PK_course] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+CREATE TABLE [dbo].[admissiontest](
+	[id] [nvarchar](max) NULL,
+	[startdatetime] [nvarchar](max) NULL,
+	[enddatetime] [nvarchar](max) NULL,
+	[testfees] [nvarchar](max) NULL,
+	[courseid] [nvarchar](max) NULL
+)
+
+CREATE TABLE [dbo].[address](
+	[id] [nvarchar](50) NULL,
+	[street] [nvarchar](50) NULL,
+	[city] [nvarchar](50) NULL,
+	[country] [nvarchar](50) NULL,
+	[instructorid] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+
+
+
+
+
+
+
+
+delete or rows at once:
+
+
+USE ORMtest;
+
+DECLARE @sql NVARCHAR(MAX) = N'';
+
+SELECT @sql += N'DELETE FROM ' + QUOTENAME(s.name) + '.' + QUOTENAME(t.name) + ';'
+FROM sys.tables t
+INNER JOIN sys.schemas s ON t.schema_id = s.schema_id
+WHERE t.type = 'U';
+
+EXEC sp_executesql @sql;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

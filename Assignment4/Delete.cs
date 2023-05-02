@@ -9,7 +9,7 @@ namespace Assignment4
 {
     public class DatabaseManager
     {
-        private readonly SqlConnection _connection = new SqlConnection(@"Server=DESKTOP-8VMMQPN\SQLEXPRESS;Database=assignment_4;Trusted_Connection=True;Encrypt=False");
+        private readonly SqlConnection _connection = new SqlConnection(@"Server=BS-1027\SQLEXPRESS;Database=ORMtest;Trusted_Connection=True;Encrypt=False");
 
         public void DeleteObject(object obj, string foreign_key, string refId)
         {
