@@ -101,7 +101,7 @@ Course course = new Course()
         },
         new AdmissionTest()
         {
-            id = 2,
+            
             StartDateTime = DateTime.Now.AddDays(14),
             EndDateTime = DateTime.Now.AddDays(15),
             TestFees = 50.00
@@ -111,8 +111,8 @@ Course course = new Course()
 
 
 
-//InsertIntoDatabase i1 = new InsertIntoDatabase();
-//i1.InsertObjectIntoDb(course, null, null);
+InsertIntoDatabase i1 = new InsertIntoDatabase();
+i1.InsertObjectIntoDb(course, null, null);
 
 
 
@@ -126,8 +126,8 @@ Course course = new Course()
 //x.UpdateObjectInDb(course, null, null);
 
 
-DatabaseManager dm = new DatabaseManager();
-dm.DeleteObject(course, null, null);
+//DatabaseManager dm = new DatabaseManager();
+//dm.DeleteObject(course, null, null);
 
 
 

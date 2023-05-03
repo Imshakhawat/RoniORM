@@ -1,3 +1,43 @@
+
+CREATE TABLE [dbo].[course](
+	[id] [nvarchar](50) NOT NULL,
+	[title] [nvarchar](50) NULL,
+	[fees] [float] NULL,
+ CONSTRAINT [PK_course] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].[instructor](
+	[id] [nvarchar](50) NULL,
+	[name] [nvarchar](50) NULL,
+	[email] [nvarchar](50) NULL,
+	[courseid] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+
+CREATE TABLE [dbo].[address](
+	[id] [nvarchar](50) NULL,
+	[street] [nvarchar](50) NULL,
+	[city] [nvarchar](50) NULL,
+	[country] [nvarchar](50) NULL,
+	[instructorid] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+
+CREATE TABLE [dbo].[phone](
+	[id] [nvarchar](50) NULL,
+	[number] [nvarchar](50) NULL,
+	[extension] [nvarchar](50) NULL,
+	[countrycode] [nvarchar](50) NULL,
+	[instructorid] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+
+
 CREATE TABLE [dbo].[topic](
 	[id] [nvarchar](50) NULL,
 	[title] [nvarchar](50) NULL,
@@ -13,35 +53,6 @@ CREATE TABLE [dbo].[session](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 
-CREATE TABLE [dbo].[phone](
-	[id] [nvarchar](50) NULL,
-	[number] [nvarchar](50) NULL,
-	[extension] [nvarchar](50) NULL,
-	[countrycode] [nvarchar](50) NULL,
-	[instructorid] [nvarchar](50) NULL
-) ON [PRIMARY]
-
-
-CREATE TABLE [dbo].[instructor](
-	[id] [nvarchar](50) NULL,
-	[name] [nvarchar](50) NULL,
-	[email] [nvarchar](50) NULL,
-	[courseid] [nvarchar](50) NULL
-) ON [PRIMARY]
-
-CREATE TABLE [dbo].[course](
-	[id] [nvarchar](50) NOT NULL,
-	[title] [nvarchar](50) NULL,
-	[fees] [float] NULL,
- CONSTRAINT [PK_course] PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-
 CREATE TABLE [dbo].[admissiontest](
 	[id] [nvarchar](max) NULL,
 	[startdatetime] [nvarchar](max) NULL,
@@ -50,13 +61,6 @@ CREATE TABLE [dbo].[admissiontest](
 	[courseid] [nvarchar](max) NULL
 )
 
-CREATE TABLE [dbo].[address](
-	[id] [nvarchar](50) NULL,
-	[street] [nvarchar](50) NULL,
-	[city] [nvarchar](50) NULL,
-	[country] [nvarchar](50) NULL,
-	[instructorid] [nvarchar](50) NULL
-) ON [PRIMARY]
 
 
 
@@ -82,6 +86,15 @@ EXEC sp_executesql @sql;
 
 
 
+show all data
+
+select * from course
+select * from instructor
+select * from address
+select * from phone
+select * from topic
+select * from session
+select * from admissiontest
 
 
 

@@ -30,12 +30,17 @@ namespace Assignment4
 
             PropertyInfo[] properties = type.GetProperties();
 
-            var id = properties.FirstOrDefault(x => x.Name.ToLower() == "id").GetValue(obj);
-
+           var id = properties.FirstOrDefault(x => x.Name.ToLower() == "id").GetValue(obj);
+          // var id = type.GetProperty("id");
             if (id == null)
             {
                 throw new Exception("Object Must Have An ID Property.");
             }
+
+            //if (!dict.TryGetValue(properties., out string? fkId))
+            //{
+            //    throw new Exception($"Cannot get ID value from object of type {type.Name}");
+            //}
 
             string? fkId = id.ToString();
 

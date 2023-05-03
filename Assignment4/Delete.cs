@@ -48,7 +48,7 @@ namespace Assignment4
                 if (value == null) continue;
                 if (value is string || value.GetType().IsValueType)
                 {
-                    dict.Add(property.Name, value);
+                    dict.Add(property.Name, refId);
                 }
                 else if (value is IList list)
                 {
