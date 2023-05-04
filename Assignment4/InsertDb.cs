@@ -1,15 +1,19 @@
-﻿using System.Collections;
-using System.Data;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data;
+using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Assignment4
 {
-    public class InsertIntoDatabase
+    public class InsertDb
     {
         private readonly SqlConnection _connection = new SqlConnection(@"Server=BS-1027\SQLEXPRESS;Database=ORMtest;Trusted_Connection=True;Encrypt=False");
-        public void InsertObjectIntoDb(object obj, string foreignKey, string foreignKeyRefID)
+        public void InsertOperation(object obj, string foreignKey, string foreignKeyRefID)
         {
             Dictionary<string, object> objMapper = new Dictionary<string, object>();
 
@@ -43,62 +47,67 @@ namespace Assignment4
                 {
                     foreach (var item in list)
                     {
-                        InsertObjectIntoDb(item, foreignKeyName, foreignKeyID);
+                        InsertOperation(item, foreignKeyName, foreignKeyID);
                     }
                 }
                 else
                 {
-                    InsertObjectIntoDb(value, foreignKeyName, foreignKeyID);
+                    InsertOperation(value, foreignKeyName, foreignKeyID);
                 }
             }
 
-            SqlBuilder2(tableName, objMapper);
+            SqlBuilder(tableName, objMapper);
+
+            
+
         }
+
+
+
+        //public void SqlBuilder(string tableName, Dictionary<string, object> columnValues)
+        //{
+        //    var columns = string.Join(", ", columnValues.Keys);
+
+        //    var parameters = string.Join(", ", columnValues.Select(x => "@" + x.Key));
+
+        //    var query = new StringBuilder();
+
+        //    query.Append($"INSERT INTO {tableName} ({columns}) VALUES ({parameters})");
+
+        //    Console.WriteLine(query);
+
+        //    using (SqlCommand cmd = new SqlCommand(query.ToString(), _connection))
+        //    {
+        //        foreach (var x in columnValues)
+        //        {
+        //            cmd.Parameters.AddWithValue("@" + x.Key, x.Value);
+        //        }
+        //        try
+        //        {
+        //            _connection.Open();
+        //            cmd.ExecuteNonQuery();
+        //        }
+        //        catch (SqlException ex)
+        //        {
+        //            Console.WriteLine(ex.Message);
+        //        }
+        //        finally
+        //        {
+        //            if (_connection.State != ConnectionState.Closed)
+        //            {
+        //                _connection.Close();
+        //            }
+        //        }
+
+        //    }
+
+
+
+        //}
 
 
 
         public void SqlBuilder(string tableName, Dictionary<string, object> columnValues)
-        {
-            var columns = string.Join(", ", columnValues.Keys);
-
-            var parameters = string.Join(", ", columnValues.Select(x => "@" + x.Key));
-
-            var query = new StringBuilder();
-
-            query.Append($"INSERT INTO {tableName} ({columns}) VALUES ({parameters})");
-
-            Console.WriteLine(query);
-
-            using (SqlCommand cmd = new SqlCommand(query.ToString(), _connection))
-            {
-                foreach (var x in columnValues)
-                {
-                    cmd.Parameters.AddWithValue("@" + x.Key, x.Value);
-                }
-                try
-                {
-                    _connection.Open();
-                    cmd.ExecuteNonQuery();
-                }
-                catch (SqlException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                finally
-                {
-                    if (_connection.State != ConnectionState.Closed)
-                    {
-                        _connection.Close();
-                    }
-                }
-
-            }
-
-        }
-
-
-
-        public void SqlBuilder2(string tableName, Dictionary<string, object> columnValues)
         {
             var columns = string.Join(", ", columnValues.Keys);
             var parameters = string.Join(", ", columnValues.Keys.Select(k => "@" + k));
@@ -129,13 +138,9 @@ namespace Assignment4
                     }
                 }
             }
+
+
         }
-
-
-
-
-
-
 
 
 

@@ -111,10 +111,13 @@ Course course = new Course()
 
 
 
-InsertIntoDatabase i1 = new InsertIntoDatabase();
-i1.InsertObjectIntoDb(course, null, null);
+//InsertIntoDatabase i1 = new InsertIntoDatabase();
+//i1.InsertObjectIntoDb(course, null, null);
 
 
+var orm = new MyORM<int, Course>();
+
+orm.Insert(course);
 
 
 //Update x = new Update();
