@@ -117,7 +117,9 @@ Course course = new Course()
 
 var orm = new MyORM<int, Course>();
 
-orm.Insert(course);
+//orm.Insert(course);
+
+//orm.Delete(course);
 
 
 //Update x = new Update();
@@ -126,7 +128,7 @@ orm.Insert(course);
 
 
 
-//x.UpdateObjectInDb(course, null, null);
+//orm.Update(course);
 
 
 //DatabaseManager dm = new DatabaseManager();

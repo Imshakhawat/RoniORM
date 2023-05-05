@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assignment4.CRUD;
 
 namespace Assignment4
 {
@@ -20,16 +21,19 @@ namespace Assignment4
             InsertDb insert = new InsertDb();
             insert.InsertOperation(item, null, null);
         }
-        //public void Update(T item)
-        //{
-        //    UpdateOperation update = new UpdateOperation();
-        //    update.UpdateObjectInDb(item, null, null);
-        //}
-        //public void Delete(T item)
-        //{
-        //    DeleteOperation<T> delete = new DeleteOperation<T>(_t);
-        //    delete.DeleteObject(item, null, null);
-        //}
+        public void Update(T item)
+        {
+            UpdateDb update = new UpdateDb();
+            update.UpdateOperation(item, null, null);
+        }
+        public void Delete(T item)
+        {
+           
+            DeleteDb delete = new DeleteDb();
+            delete.DeleteOperation(item, null, null);
+            //DeleteOperation<T> delete = new DeleteOperation<T>(_t);
+            //delete.DeleteObject(item, null, null);
+        }
         //public void Delete(G id)
         //{
         //    DeleteOperation<T> delete = new DeleteOperation<T>(_t);
